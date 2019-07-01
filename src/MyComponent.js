@@ -4,6 +4,14 @@ import PropTypes from "prop-types";
 
 class MyComponent extends Component {
 
+    static defaultProps={
+        name: "이수현"
+    }
+
+    static propTypes={
+        name:PropTypes.string
+    }
+
     render () {
         return (
             <div>
@@ -13,15 +21,6 @@ class MyComponent extends Component {
             </div>
         )
     }
-}
-
-// props의 타입 정하기
-MyComponent.PropTypes={
-    name: PropTypes.string
-}
-
-MyComponent.defaultProps={
-    name: "이수현"
 }
 
 export default MyComponent;
