@@ -4,7 +4,7 @@ import MyComponent from "./MyComponent";
 
 function App() {
   return (
-    <MyComponent/>
+    <MyComponent name="이수현"/>
   );
 }
 
