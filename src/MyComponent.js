@@ -14,13 +14,10 @@ class MyComponent extends Component {
         , catAge: PropTypes.number.isRequired
     }
 
-    constructor(props){
-        super(props);
-        this.state={
-            number:0
-            ,TMI:["한국에 가고싶어하지!", "흔들의자에 앉아서 전철 소리 듣는걸 좋아해.", "체력이 거지야..."]
-            ,clickCount:0
-        }
+    state={
+        number:0,
+        TMI:["한국에 가고싶어하지!", "흔들의자에 앉아서 전철 소리 듣는걸 좋아해.", "체력이 거지야..."],
+        clickCount:0
     }
 
     render () {
