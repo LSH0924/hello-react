@@ -21,6 +21,8 @@ class ValidationSample extends Component {
             clicked : true,
             validate: this.state.password === "1234"
         });
+        // 일반 DOM 을 사용하는것처럼 사용 가능. 포커싱한다.
+        this.input.focus();
     }
 
     render() {
@@ -34,6 +36,8 @@ class ValidationSample extends Component {
                 value={password}
                 onChange={this.handleChange}
                 className={clicked? (validate ? "success" : "failure") : ""}
+                // 콜백함수로 ref 설정하기
+                ref={r => this.input = r}
                 />
                 <button
                 onClick={this.handleButtonClick}
