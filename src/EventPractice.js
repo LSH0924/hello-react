@@ -3,37 +3,62 @@ import React, { Component } from 'react';
 class EventPractice extends Component {
 
     state={
-        message: ""
+        message: "",
+        name : ""
     }
 
     // input의 onChange 이벤트
     handleInputChange = (event)=>{
         this.setState({
-            message:event.target.value
+            // 이벤트가 일어난 Element 의 이름을 키로, 값을 값으로(?) 설정한다.
+            [event.target.name]:event.target.value
         });
     }
 
     // button의 onClick 이벤트
     handleButtonClick = ()=>{
-        alert(this.state.message);
-        this.setState({
-            message: ""
-        });
+        const {message, name} = this.state;
+        if((message && name) !== ""){
+            alert(name +" : "+ message);
+            this.setState({
+                message: "",
+                name: ""
+            });
+        }else{
+            alert("입력되지 않은 부분이 있습니다.");
+        }
     }
 
     render() {
-        const {message} = this.state;
+        const {message, name} = this.state;
+        const style={"width" : "200px"};
         return (
             <div>
                 <h1>이벤트 연습</h1>
-                <h2>입력한 값 : {message}</h2>
+                <h2>입력한 값 : 메시지 -> {message}</h2>
+                <h2>입력한 값 : 이름 -> {name}</h2>
                 <input
                 type="text"
                 name="message"
                 value={message}
-                placeholder="onChange 이벤트 연습"
+                style={style}
+                placeholder="onChange 이벤트 연습 : 메시지"
                 onChange={this.handleInputChange}/>
-                <button onClick={this.handleButtonClick}>비우기</button>
+                <br/>
+                <input
+                type="text"
+                name="name"
+                value={name}
+                style={style}
+                placeholder="onChange 이벤트 연습 : 이름"
+                onChange={this.handleInputChange}/>
+                <br/>
+                <button 
+                onClick={this.handleButtonClick}
+                style={style}
+                >
+                알람 띄우기
+                </button>
             </div>
         );
     }
