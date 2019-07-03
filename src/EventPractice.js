@@ -29,6 +29,13 @@ class EventPractice extends Component {
         }
     }
 
+    // 엔터키가 눌릴 때 일어날 이벤트 설정
+    handleKeyPress = (event)=>{
+        if(event.key === "Enter"){
+            this.handleButtonClick();
+        }
+    }
+
     render() {
         const {message, name} = this.state;
         const style={"width" : "200px"};
@@ -43,7 +50,9 @@ class EventPractice extends Component {
                 value={message}
                 style={style}
                 placeholder="onChange 이벤트 연습 : 메시지"
-                onChange={this.handleInputChange}/>
+                onChange={this.handleInputChange}
+                // 키보드가 눌릴 때 실행할 이벤트
+                onKeyPress={this.handleKeyPress}/>
                 <br/>
                 <input
                 type="text"
@@ -51,7 +60,9 @@ class EventPractice extends Component {
                 value={name}
                 style={style}
                 placeholder="onChange 이벤트 연습 : 이름"
-                onChange={this.handleInputChange}/>
+                onChange={this.handleInputChange}
+                // 키보드가 눌릴 때 실행할 이벤트
+                onKeyPress={this.handleKeyPress}/>
                 <br/>
                 <button 
                 onClick={this.handleButtonClick}
