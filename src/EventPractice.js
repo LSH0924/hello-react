@@ -6,22 +6,15 @@ class EventPractice extends Component {
         message: ""
     }
 
-    constructor(props){
-        super(props);
-        // 임의로 만든 메서드들을 각각 this 에 바인딩
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleButtonClick = this.handleButtonClick.bind(this);
-    }
-
     // input의 onChange 이벤트
-    handleInputChange(event){
+    handleInputChange = (event)=>{
         this.setState({
             message:event.target.value
         });
     }
 
     // button의 onClick 이벤트
-    handleButtonClick(event){
+    handleButtonClick = ()=>{
         alert(this.state.message);
         this.setState({
             message: ""
