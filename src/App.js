@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import ValidationSample from "./validation/ValidationSample";
+import ScrollBox from "./ScrollBox";
 
 function App() {
   return (
-    <ValidationSample/>
+    <ScrollBox/>
   );
 }
 
