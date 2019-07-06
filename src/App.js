@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
-import ScrollBox from "./ScrollBox";
+
+import IterationSample from "./IterationSample"
 
 function App() {
   return (
-    <ScrollBox/>
+    <IterationSample/>
   );
 }
 
