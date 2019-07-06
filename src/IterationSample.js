@@ -20,10 +20,24 @@ class IterationSample extends Component {
     });
   };
 
+  handleRemove = index => {
+    const { seasons } = this.state;
+    this.setState({
+      seasons: [
+        // index 0번부터 index앞까지
+        ...seasons.slice(0, index),
+        // index+1번부터 배열의 맨 끝까지
+        ...seasons.slice(index + 1, seasons.length)
+      ]
+    });
+  };
+
   render() {
     const { seasons } = this.state;
     const seasonList = seasons.map((season, index) => (
-      <li key={index}>{season}</li>
+      <li key={index} onDoubleClick={() => this.handleRemove(index)}>
+        {season}
+      </li>
     ));
 
     return (
