@@ -23,12 +23,8 @@ class IterationSample extends Component {
   handleRemove = index => {
     const { seasons } = this.state;
     this.setState({
-      seasons: [
-        // index 0번부터 index앞까지
-        ...seasons.slice(0, index),
-        // index+1번부터 배열의 맨 끝까지
-        ...seasons.slice(index + 1, seasons.length)
-      ]
+      // index 와 일치하지 않는 인덱스들만 뽑아 새 배열 만들기
+      seasons: seasons.filter((item, i) => i !== index)
     });
   };
 
