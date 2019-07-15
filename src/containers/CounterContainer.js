@@ -25,8 +25,8 @@ export function getRandomColor(){
 // connect의 첫 번째 매개변수
 // store 안의 state 값을 CounterContainer의 props 로 연결한다
 const mapStateToProps = (state) => ({
-    number: state.number,
-    color: state.color
+    number: state.numberData.number,
+    color: state.colorData.color
 });
 
 // connect의 두 번째 매개변수
