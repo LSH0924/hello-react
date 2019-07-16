@@ -3,21 +3,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Counter.css"
 
-const Counter = ({number, color, onIncreament, onDecreament, onSetColor}) => {
+const Counter = ({number, color, index, onIncreament, onDecreament, onSetColor}) => {
     const style={
         backgroundColor : color
     }
     
     return (
         <div
-        className="counter"
-        onClick={onIncreament}
+        className="Counter"
+        onClick={() => onIncreament(index)}
         // 마우스 오른쪽 클릭할 때의 이벤트 설정
         onContextMenu={(e)=>{
             e.preventDefault();
-            onDecreament();
+            onDecreament(index);
         }}
-        onDoubleClick={onSetColor}
+        onDoubleClick={() =>onSetColor(index)}
         style={style}>
             {number}
         </div>
@@ -28,6 +28,7 @@ const Counter = ({number, color, onIncreament, onDecreament, onSetColor}) => {
 Counter.propTypes={
     number: PropTypes.number,
     color: PropTypes.string,
+    index: PropTypes.number,
     onIncreament: PropTypes.func,
     onDecreament: PropTypes.func,
     onSetColor: PropTypes.func
@@ -37,6 +38,7 @@ Counter.propTypes={
 Counter.defaultProps={
     number: 0,
     color: "black",
+    index: 0,
     onIncreament: () => console.warn("onIncreament not defined"),
     onDecreament: () => console.warn("onDecreament not defined"),
     onSetColor: () => console.warn("onSetColor not defined")
