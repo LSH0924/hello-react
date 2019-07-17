@@ -25,7 +25,6 @@ export const create = (color) => ({
     color
 });
 // 멀티카운터 : 카운터 삭제
-export const remove = (index) => ({
-    type: types.REMOVE,
-    index
+export const remove = () => ({
+    type: types.REMOVE
 });

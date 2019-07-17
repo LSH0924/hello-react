@@ -22,8 +22,9 @@ function counter(state = initialState, action){
             ]
         };
         case types.REMOVE: 
+            const counterLength = counters.length-1 === 0 ? 1 : counters.length-1;
             return {
-                counters: counters.filter(index => action.index !== index)
+                counters: counters.slice(0, counterLength)
             };
         case types.INCREAMENT:
             return {
