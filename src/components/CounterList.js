@@ -3,17 +3,20 @@ import Counter from "./Counter";
 import PropTypes from "prop-types";
 
 import "./CounterList.css";
+import { List } from "immutable";
 
 const CounterList = ({counters, onIncreament, onDecreament, onSetColor}) =>{
-    const counterList = counters.map((counter, index) => (
+    const counterList = counters.map((counter, index) => {
+        return (
         <Counter
         key={index}
         index={index}
-        {...counter}
+        number={counter.get("number")}
+        color={counter.get("color")}
         onIncreament={onIncreament}
         onDecreament={onDecreament}
         onSetColor={onSetColor}/>
-    ));
+    )});
 
     return (
         <div className="CounterList">
@@ -23,11 +26,7 @@ const CounterList = ({counters, onIncreament, onDecreament, onSetColor}) =>{
 };
 
 CounterList.propTypes = {
-    // 지정한 형태의 오브젝트로 이루어진 배열
-    counters: PropTypes.arrayOf(PropTypes.shape({
-        color: PropTypes.string,
-        number: PropTypes.number
-    })),
+    counters: PropTypes.instanceOf(List),
     onIncreament: PropTypes.func,
     onDecreament: PropTypes.func,
     onSetColor: PropTypes.func
