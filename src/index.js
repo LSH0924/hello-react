@@ -6,12 +6,10 @@ import * as serviceWorker from './serviceWorker';
 
 // 리덕스 관련 불러오기
 import { createStore } from "redux";
-import reducers from "./reducers";
+import module from "./modules/counter";
 import {Provider} from "react-redux";
 
-// 스토어 생성
-// const store = createStore(reducers);
-const store = createStore(reducers, window.devToolsExtension && window.devToolsExtension());
+const store = createStore(module, window.devToolsExtension && window.devToolsExtension());
 
 const provider = 
             <Provider store={store}>
