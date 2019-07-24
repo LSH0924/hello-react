@@ -1,19 +1,26 @@
 // 프리젠테이셔널 컴포넌트
 import React from "react";
 import PropTypes from "prop-types";
-import "./Counter.css"
+import "./Counter.css";
 
-const Counter = ({number, color, index, onIncreament, onDecreament, onSetColor}) => {
-    const style={
-        backgroundColor : color
-    }
+const Counter = ({
+  number,
+  color,
+  index,
+  onIncreament,
+  onDecreament,
+  onSetColor
+}) => {
+  const style = {
+    backgroundColor: color
+  };
     
     return (
         <div
         className="Counter"
         onClick={() => onIncreament(index)}
         // 마우스 오른쪽 클릭할 때의 이벤트 설정
-        onContextMenu={(e)=>{
+      onContextMenu={e => {
             e.preventDefault();
             onDecreament(index);
         }}
@@ -22,7 +29,7 @@ const Counter = ({number, color, index, onIncreament, onDecreament, onSetColor})
             {number}
         </div>
     );
-}
+};
 
 // Counter컴포넌트가 받는 props들의 type 설정하기
 Counter.propTypes={
@@ -42,6 +49,6 @@ Counter.defaultProps={
     onIncreament: () => console.warn("onIncreament not defined"),
     onDecreament: () => console.warn("onDecreament not defined"),
     onSetColor: () => console.warn("onSetColor not defined")
-}
+};
 
 export default Counter;

@@ -6,8 +6,12 @@ import "./Buttons.css";
 const Buttons = ({onCreate, onRemove}) => {
     return (
         <div className="Buttons">
-            <div className="btn add" onClick={onCreate}>카운터 생성</div>
-            <div className="btn remove" onClick={() => onRemove()}>카운터 제거</div>
+      <div className="btn add" onClick={onCreate}>
+        카운터 생성
+      </div>
+      <div className="btn remove" onClick={() => onRemove()}>
+        카운터 제거
+      </div>
         </div>
     );
 };
