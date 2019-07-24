@@ -16,35 +16,52 @@ export const setColor = createAction(SET_COLOR);
 export const create = createAction(CREATE);
 export const remove = createAction(REMOVE);
 
+export const increamentAcync = index => dispatch => {
+  setTimeout(() => {
+    dispatch(increament(index));
+  }, 1000);
+};
+
+export const decreamentAcync = index => dispatch => {
+  setTimeout(() => {
+    dispatch(decreament(index));
+  }, 1000);
+};
+
 const initialState = List([
-    Map({
-        number : 0,
-        color: "black"
-    })
+  Map({
+    number: 0,
+    color: "black"
+  })
 ]);
 
-
-export default handleActions({
-    [INCREAMENT]: (state, action)=>{
-        const {payload : id} = action;
-        return state.updateIn([id, "number"], num=> num + 1);
+export default handleActions(
+  {
+    [INCREAMENT]: (state, action) => {
+      const { payload: id } = action;
+      return state.updateIn([id, "number"], num => num + 1);
     },
     [DECREAMENT]: (state, action) => {
-        const { payload : id } = action;
-        return state.updateIn([id, "number"], num => num-1);
+      const { payload: id } = action;
+      return state.updateIn([id, "number"], num => num > 0 ? num - 1 : num);
     },
-    [SET_COLOR]: (state, action)=> {
-        const { payload : id } = action;
-        return state.setIn([id, "color"], getRandomColor());
+    [SET_COLOR]: (state, action) => {
+      const { payload: id } = action;
+      return state.setIn([id, "color"], getRandomColor());
     },
     [CREATE]: (state, action) => {
-        const {payload: color} = action;
-        return state.push(Map({
-            number:0,
-            color: color
-        }));
+      const { payload: color } = action;
+      return state.push(
+        Map({
+          number: 0,
+          color: color
+        })
+      );
     },
-    [REMOVE]: (state, action)=>{
-        if(state.size !== 1) return state.pop();
+    [REMOVE]: (state, action) => {
+      if (state.size === 1) return state;
+      return state.pop();
     }
-}, initialState);
+  },
+  initialState
+);
