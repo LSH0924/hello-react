@@ -3,7 +3,6 @@ import Counter from "./Counter";
 import PropTypes from "prop-types";
 
 import "./CounterList.css";
-import { List } from "immutable";
 
 const CounterList = ({counters, onIncreament, onDecreament, onSetColor}) =>{
     const counterList = counters.map((counter, index) => {
@@ -26,7 +25,7 @@ const CounterList = ({counters, onIncreament, onDecreament, onSetColor}) =>{
 };
 
 CounterList.propTypes = {
-    counters: PropTypes.instanceOf(List),
+    counters: PropTypes.object,
     onIncreament: PropTypes.func,
     onDecreament: PropTypes.func,
     onSetColor: PropTypes.func
