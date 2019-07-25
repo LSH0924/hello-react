@@ -6,7 +6,7 @@ import axios from "axios";
 function getPostAPI(postId){
     // promise 객체 반환
     // postId가 0이면 오류가 발생한다.
-    return axios.get('https://jsonplaceholder.typicode.com/posts/${postId}');
+    return axios.get('https://jsonplaceholder.typicode.com/posts/'+ postId);
 }
 
 // 액션 타입 정의

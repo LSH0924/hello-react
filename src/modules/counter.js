@@ -30,7 +30,7 @@ export const decreamentAcync = index => dispatch => {
 
 const initialState = List([
   Map({
-    number: 0,
+    number: 1,
     color: "black"
   })
 ]);
