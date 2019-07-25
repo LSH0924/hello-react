@@ -4,18 +4,20 @@ import PropTypes from "prop-types";
 
 import "./CounterList.css";
 
-const CounterList = ({counters, onIncreament, onDecreament, onSetColor}) =>{
-    const counterList = counters.map((counter, index) => {
+const CounterList = ({state, onIncreament, onDecreament, onSetColor, onSetIndex}) =>{
+    const counterList = state.counter.map((counter, index) => {
         return (
-        <Counter
-        key={index}
-        index={index}
-        number={counter.get("number")}
-        color={counter.get("color")}
-        onIncreament={onIncreament}
-        onDecreament={onDecreament}
-        onSetColor={onSetColor}/>
-    )});
+            <Counter
+            key={index}
+            index={index}
+            number={counter.get("number")}
+            color={counter.get("color")}
+            onIncreament={onIncreament}
+            onDecreament={onDecreament}
+            onSetColor={onSetColor}
+            onSetIndex={onSetIndex}/>
+        );
+    });
 
     return (
         <div className="CounterList">
@@ -25,7 +27,7 @@ const CounterList = ({counters, onIncreament, onDecreament, onSetColor}) =>{
 };
 
 CounterList.propTypes = {
-    counters: PropTypes.object,
+    counters: PropTypes.array,
     onIncreament: PropTypes.func,
     onDecreament: PropTypes.func,
     onSetColor: PropTypes.func

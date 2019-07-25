@@ -9,7 +9,8 @@ const Counter = ({
   index,
   onIncreament,
   onDecreament,
-  onSetColor
+  onSetColor,
+  onSetIndex
 }) => {
   const style = {
     backgroundColor: color
@@ -18,7 +19,10 @@ const Counter = ({
     return (
         <div
         className="Counter"
-        onClick={() => onIncreament(index)}
+        onClick={() => {
+          onIncreament(index);
+          onSetIndex(index);
+        }}
         // 마우스 오른쪽 클릭할 때의 이벤트 설정
       onContextMenu={e => {
             e.preventDefault();
