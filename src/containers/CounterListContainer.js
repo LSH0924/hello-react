@@ -18,22 +18,27 @@ class CounterListContainer extends Component{
     const {PostAction, state} = this.props;
     const {clickedCounterIndex} = this.state;
     const number = state.counter.getIn([clickedCounterIndex,"number"]);
-    PostAction.getPost(number);
+    console.log("number", number);
+    PostAction.getPost(number)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => console.log(error));
   }
 
   componentDidMount(){
-    // 컴포넌트가 업데이트 되면 실행
+    // 컴포넌트가 마운트 되면 실행
     this.loadData();
-    console.log("componentDidMount");
   }
 
   componentDidUpdate(prevProps, prevState){
-    // 이전 카운터의 숫자와 현재 카운터의 숫자가 다르면 요청을 시작한다.
-    // 근데 지금은 둘다같음.. 내일 수정하자.
-    const {clickedCounterIndex} = this.state; 
-    if(this.props.state.counter.getIn([clickedCounterIndex, "number"]) !== prevProps.state.counter.getIn([clickedCounterIndex, "number"])) {
+    // 다른 카운터를 업데이트 하면 웹요청
+    // 0아래로 내려가면 유감스럽게도 업데이트가 되지 않기 때문에 이 메소드 자체에 들어오지를 않는다.
+    console.log("다른 카운터!");
+    if(this.state.clickedCounterIndex !== prevState.clickedCounterIndex){
       this.loadData();
     }
+  
   }
 
   handleSetClickedCounterIndex = index => {
