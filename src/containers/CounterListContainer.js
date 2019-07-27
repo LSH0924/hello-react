@@ -14,17 +14,21 @@ class CounterListContainer extends Component{
     clickedCounterIndex: 0
   }
 
-  loadData = () => {
+  // async/await 키워드 사용하기
+  // async : await를 사용할 함수의 앞부분에 키워드를 적용한다.
+  loadData = async () => {
     const {PostAction, state} = this.props;
     const {clickedCounterIndex} = this.state;
     const number = state.counter.getIn([clickedCounterIndex,"number"]);
-    console.log("number", number);
-    PostAction.getPost(number)
-    .then(response => {
+    try{
+      // await : 기다려야 할 Promise앞에 키워드를 붙여주고,
+      // 반드시 try-catch문으로 감싸 오류를 처리해주어야 한다.
+      const response = await PostAction.getPost(number);
       console.log(response);
-    })
-    .catch(error => console.log(error));
-  }
+    }catch(e){
+      console.log(e);
+    }
+  };
 
   componentDidMount(){
     // 컴포넌트가 마운트 되면 실행
