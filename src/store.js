@@ -2,8 +2,7 @@
 import { createStore, applyMiddleware } from "redux";
 import modules from "./modules";
 // import ReduxThunk from "redux-thunk";
-import promiseMiddleware from "redux-promise-middleware";
-
+import penderMiddleware from "redux-pender";
 import logger from "redux-logger";
 
-export default createStore(modules, applyMiddleware(logger, promiseMiddleware()));
+export default createStore(modules, applyMiddleware(logger, penderMiddleware()));
