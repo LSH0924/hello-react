@@ -38,6 +38,14 @@ export default handleActions({
                     title, body
                 }
             };
+        },
+        onCancel: (state, action) => {
+            return {
+                data: {
+                    title: "요청이 취소되었습니다.",
+                    body: "사실 서버는 요청에 응답했지만 미들웨어가 무시하고 있는 중입니다.",
+                }
+            };
         }
     })
 }, initialState);

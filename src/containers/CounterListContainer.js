@@ -23,7 +23,12 @@ class CounterListContainer extends Component{
     try{
       // await : 기다려야 할 Promise앞에 키워드를 붙여주고,
       // 반드시 try-catch문으로 감싸 오류를 처리해주어야 한다.
-      const response = await PostAction.getPost(number);
+      
+      // Promise 기반 액션을 디스패치 하고 나면 cancle 함수가 포함된 Promise를 반환
+      // 따로 저장해서 사용한다.
+      const promise = PostAction.getPost(number);
+      this.cancelReq = promise.cancel;
+      const response = await promise;
       console.log(response);
     }catch(e){
       console.log(e);
@@ -33,6 +38,11 @@ class CounterListContainer extends Component{
   componentDidMount(){
     // 컴포넌트가 마운트 되면 실행
     this.loadData();
+    window.addEventListener("keyup", e => {
+      if(e.key === "Escape"){
+        this.handleCancel();
+      }
+    });
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -50,6 +60,16 @@ class CounterListContainer extends Component{
       clickedCounterIndex: index
     });
   }
+
+  cancelReq = null;
+
+  // 취소 요청이 오면 웹요청을 취소
+  handleCancel = () => {
+    if(this.cancelReq){
+      this.cancelReq();
+      this.cancelReq = null;
+    }
+  };
 
   render(){
     const {state, CounterAction} = this.props;
