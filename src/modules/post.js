@@ -12,8 +12,10 @@ function getPostAPI(postId){
 
 // 액션 타입 정의
 const GET_POST = "GET_POST";
-
-export const getPost = createAction(GET_POST, getPostAPI());
+// redux-pender의 액션 구조는 Flux standard action 을 따르기 때문에 createAction으로 액션을 만들 수 있다.
+// Flux standard action : https://github.com/redux-utilities/flux-standard-action
+// 두 번째 파라미터는 Promise를 반환하는 함수여야한다.
+export const getPost = createAction(GET_POST, getPostAPI);
 
 const initialState = {
     data:{
@@ -25,7 +27,8 @@ const initialState = {
 // 리듀서 구현
 export default handleActions({
     // 리듀서에서 비동기작업을 redux-pender으로 관리할 때.
-    
+    // 요청중일 때와 실패했을 때 추가로 해야 할 작업이 있다면 onPending, onFailure를 추가한다.
+    // applyPenders(일반 리듀서, pender 관련 객체들의 배열)로 여러 개의 비동기 작업을 관리할 수 있다.
     ...pender({
         type: GET_POST,
         onSuccess: (state, action) => {

@@ -67,8 +67,8 @@ class CounterListContainer extends Component{
           pending ? <h3>로딩중!</h3> : 
           (error ? <h3>오류 발생</h3> : 
             (<div>
-              <h3>{data.title}</h3>
-              <h3>{data.body}</h3>
+              <h3>Title: {data.title}</h3>
+              <h3>body: {data.body}</h3>
             </div>)
           )
         }
@@ -80,7 +80,9 @@ class CounterListContainer extends Component{
 export default connect(
   state => ({ 
     state: state,
-    post: state.post
+    post: state.post.data,
+    loading: state.pender.pending["GET_POST"],
+    error: state.pender.failure["GET_POST"]
   }),
   dispatch => ({ 
     CounterAction: bindActionCreators(counterActions, dispatch),
